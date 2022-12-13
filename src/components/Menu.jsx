@@ -9,8 +9,10 @@ export const MenuBar = ({ id, anchorEl, onClose, items }) => {
       onClose={onClose}
       MenuListProps={{ onMouseLeave: onClose }}
     >
-      {items.map((item) => (
-        <MenuItem onClick={onClose}>{item.name}</MenuItem>
+      {items.map((item, i) => (
+        <MenuItem key={i} onClick={onClose}>
+          {item.name}
+        </MenuItem>
       ))}
     </Menu>
   );

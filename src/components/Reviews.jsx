@@ -21,14 +21,16 @@ export default function Reviews() {
         <CircularProgress />
       </Grid>
     );
+  if (error) return <div>some things went wrong</div>;
   return (
-    <Grid container item sx={{ width: "90%", mx: "auto" }}>
+    <Grid container item>
       <Grid item>
         <Typography fontSize={"40px"}>Reviews</Typography>
       </Grid>
 
-      {data.results.map((data) => (
+      {data.results.map((data, i) => (
         <Card
+          key={i}
           sx={{
             borderRadius: "8px",
             backgroundColor: "white",

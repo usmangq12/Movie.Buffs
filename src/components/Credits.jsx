@@ -20,10 +20,11 @@ export const Credits = () => {
         <CircularProgress />
       </Grid>
     );
-  console.log(data);
+
+  if (error) return <div>some things went wrong</div>;
   return (
-    <Grid container item>
-      <Grid item sx={{ width: "90%", mx: "auto", my: "20px" }}>
+    <Grid container item flexDirection={"column"}>
+      <Grid item sx={{ my: "20px" }}>
         <Typography fontSize={"30px"} fontWeight={"900px"}>
           Top Billed Cast
         </Typography>
@@ -36,11 +37,11 @@ export const Credits = () => {
           mx: "auto",
           flexWrap: "nowrap",
           overflowX: "scroll",
-          width: "80%",
         }}
       >
-        {data.cast.map((data) => (
+        {data.cast.map((data, i) => (
           <MovieCard
+            key={i}
             title={data.name}
             release_date={data.character}
             image={data.profile_path}

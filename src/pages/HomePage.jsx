@@ -17,10 +17,10 @@ export const MainPage = () => {
     isLoading: isComingLoading,
   } = useGetMoviesUpcomingQuery();
 
-  // console.log(PopularMovies);
-
+  if ((PopularMoviesError, UpcomingMoviesError))
+    return <div>some things went wrong</div>;
   return (
-    <Grid container item>
+    <Grid container item flexDirection={"column"}>
       <HeaderSection />
       <Movies
         title={"Popular Movies"}
