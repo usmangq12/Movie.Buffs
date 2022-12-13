@@ -1,56 +1,50 @@
 import React from "react";
 import { useState } from "react";
 import { Grid, Button } from "@mui/material";
-import AddSharpIcon from "@mui/icons-material/AddSharp";
+// import AddSharpIcon from "@mui/icons-material/AddSharp";
 import { Logo } from "../assest";
 import SearchSharpIcon from "@mui/icons-material/SearchSharp";
-import { MenuBar } from "./Menu";
+// import { MenuBar } from "./Menu";
 import { menus } from "../constants";
+import { Container } from "@mui/system";
 
 export const NavBar = () => {
-  const [anchorEl, setAnchorEl] = useState(null);
-  const [items, setItems] = useState([]);
+  // const [anchorEl, setAnchorEl] = useState(null);
+  // const [items, setItems] = useState([]);
 
-  const handleClick = (event) => {
-    const filteredItems = menus.filter((menu) => menu.id === event.target.id)[0]
-      .items;
-    setItems(filteredItems);
+  // const handleClick = (event) => {
+  //   const filteredItems = menus.filter((menu) => menu.id === event.target.id)[0]
+  //     .items;
+  //   setItems(filteredItems);
 
-    setAnchorEl(event.currentTarget);
-  };
+  //   setAnchorEl(event.currentTarget);
+  // };
 
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
+  // const handleClose = () => {
+  //   setAnchorEl(null);
+  // };
 
   return (
-    <Grid
-      container
-      item
-      direction="row"
-      justifyContent="center"
-      color="white"
-      sx={{ bgcolor: "rgb(3,37,65)" }}
-      height="65px"
-    >
-      <Grid
-        container
-        item
-        alignItems="center"
-        xs={5}
-        justifyContent="space-around"
-      >
-        <Button
-          sx={{
-            textDecoration: "none",
-            width: "200px",
-            maxWidth: "100%",
-          }}
+    <Grid container color="white" sx={{ bgcolor: "rgb(3,37,65)" }}>
+      <Container>
+        <Grid
+          container
+          direction="row"
+          alignItems="center"
+          justifyContent="space-between"
         >
-          <img src={Logo} alt="logo" style={{ maxWidth: "100%" }} />
-        </Button>
+          <Grid container item flexWrap={"nowrap"} xs={5}>
+            <Button
+              sx={{
+                textDecoration: "none",
+                width: "200px",
+                maxWidth: "100%",
+              }}
+            >
+              <img src={Logo} alt="logo" style={{ maxWidth: "100%" }} />
+            </Button>
 
-        <Button
+            {/* <Button
           id="menu-btn-1"
           aria-owns={anchorEl ? "simple-menu" : undefined}
           aria-haspopup="true"
@@ -87,8 +81,8 @@ export const NavBar = () => {
           }}
         >
           People
-        </Button>
-
+        </Button> */}
+            {/* 
         <Button
           id="menu-btn-4"
           aria-owns={anchorEl ? "simple-menu-4" : undefined}
@@ -107,18 +101,18 @@ export const NavBar = () => {
           anchorEl={anchorEl}
           onClose={handleClose}
           items={items}
-        />
-      </Grid>
+        /> */}
+          </Grid>
 
-      <Grid
-        container
-        item
-        alignItems="center"
-        xs={4}
-        marginLeft="100px"
-        justifyContent="space-around"
-      >
-        <Button
+          <Grid
+            // container
+            item
+            alignItems="center"
+            // xs={4}
+            // marginLeft="100px"
+            // justifyContent="space-around"
+          >
+            {/* <Button
           sx={{
             color: "white",
             textDecoration: "none",
@@ -127,9 +121,9 @@ export const NavBar = () => {
           }}
         >
           <AddSharpIcon />
-        </Button>
+        </Button> */}
 
-        <Button
+            {/* <Button
           sx={{
             color: "white",
             textDecoration: "none",
@@ -159,18 +153,20 @@ export const NavBar = () => {
           }}
         >
           Join TMDB
-        </Button>
+        </Button> */}
 
-        <Button
-          sx={{
-            color: "white",
-            textDecoration: "none",
-            fontWeight: "600",
-          }}
-        >
-          <SearchSharpIcon />
-        </Button>
-      </Grid>
+            <Button
+              sx={{
+                color: "white",
+                textDecoration: "none",
+                fontWeight: "600",
+              }}
+            >
+              <SearchSharpIcon />
+            </Button>
+          </Grid>
+        </Grid>
+      </Container>
     </Grid>
   );
 };

@@ -20,9 +20,9 @@ export const MoviesImage = () => {
         <CircularProgress />
       </Grid>
     );
-
+  if (error) return <div>some things went wrong</div>;
   return (
-    <Grid container sx={{ width: "90%", mx: "auto" }}>
+    <Grid container>
       <Grid item>
         <Typography fontSize={"30px"}>Movie Images</Typography>
         <Card

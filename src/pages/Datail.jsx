@@ -11,6 +11,7 @@ import Reviews from "../components/Reviews";
 import { Credits } from "../components/Credits";
 import CircularProgress from "@mui/material/CircularProgress";
 import { MoviesImage } from "../components/MoviesImage";
+import { Container } from "@mui/system";
 
 export const Deatail = () => {
   const { id } = useParams();
@@ -28,16 +29,14 @@ export const Deatail = () => {
         <CircularProgress />
       </Grid>
     );
+  if (error) return <div>some things went wrong</div>;
   return (
     <Grid container item sx={{ marginTop: 4 }}>
       <Card
         sx={{
           display: "flex",
-          pl: 10,
-          pt: 6,
-          pb: 6,
-          width: "90%",
-          mx: "auto",
+          px: { xs: 4, sm: 10 },
+          py: { xs: 2, sm: 6 },
           position: "relative",
           zIndex: "1",
           backgroundImage: `url(${
@@ -47,25 +46,44 @@ export const Deatail = () => {
           backgroundSize: "cover",
         }}
       >
-        <CardMedia
-          component="img"
-          sx={{ width: 350, height: "350px", borderRadius: "8px" }}
-          image={"https://www.themoviedb.org/t/p/original" + data.backdrop_path}
-          alt="nature"
-        />
-        <Grid item sx={{ display: "flex", flexDirection: "column" }}>
-          <CardContent sx={{ flex: "1 0 auto" }}>
-            <Typography component="div" variant="h5" color="white">
-              {data.title} ({data.release_date})
-            </Typography>
-            <Typography variant="subtitle1" color="#fff" component="div">
-              <h3>Overview</h3>
-            </Typography>
+        <Grid
+          container
+          sx={{
+            flexWrap: { xs: "wrap", sm: "nowrap" },
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <Grid item xs={12} sm={6} md={2}>
+            <CardMedia
+              component="img"
+              sx={{ height: "400px", borderRadius: "8px" }}
+              image={
+                "https://www.themoviedb.org/t/p/original" + data.backdrop_path
+              }
+              alt="nature"
+            />
+          </Grid>
+          <Grid
+            item
+            sx={{ display: "flex", flexDirection: "column" }}
+            xs={12}
+            sm={6}
+            md={10}
+          >
+            <CardContent>
+              <Typography component="div" variant="h5" color="white">
+                {data.title} ({data.release_date})
+              </Typography>
+              <Typography variant="subtitle1" color="#fff" component="div">
+                <h3>Overview</h3>
+              </Typography>
 
-            <Typography variant="subtitle1" color="white" component="div">
-              {data.overview}
-            </Typography>
-          </CardContent>
+              <Typography variant="subtitle1" color="white" component="div">
+                {data.overview}
+              </Typography>
+            </CardContent>
+          </Grid>
         </Grid>
         <Grid
           sx={{
@@ -80,19 +98,19 @@ export const Deatail = () => {
           }}
         ></Grid>
       </Card>
+      <Container>
+        <Grid container item>
+          <Credits />
+        </Grid>
 
-      <Grid container item>
-        <Credits />
-      </Grid>
+        <Grid container item>
+          <Reviews />
+        </Grid>
 
-      <Grid container item>
-        <Reviews />
-      </Grid>
-
-      <Grid container item>
-        <MoviesImage />
-      </Grid>
-
+        <Grid container item>
+          <MoviesImage />
+        </Grid>
+      </Container>
       <Grid container item>
         <SimilarMovies />
       </Grid>

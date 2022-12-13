@@ -5,13 +5,14 @@ import { useNavigate } from "react-router-dom";
 import { useGetsearchQuery } from "../services/sevices";
 import CircularProgress from "@mui/material/CircularProgress";
 import { Headerbackground } from "../assest";
+import { Container } from "@mui/system";
 
 export const HeaderSection = () => {
   const [val, setVal] = useState("a");
   const navigation = useNavigate();
 
   const { data, error, isLoading } = useGetsearchQuery(val);
-
+  if (error) return <div>some things went wrong</div>;
   if (isLoading)
     return (
       <Grid
@@ -29,61 +30,58 @@ export const HeaderSection = () => {
   };
 
   return (
-    <Grid
-      container
-      item
-      sx={{
-        backgroundImage: `url(${Headerbackground})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center center",
-        width: "80%",
-        height: "42vh",
-        mx: "auto",
-      }}
-    >
-      <Grid item sx={{ mx: "auto", my: "auto" }}>
-        <Typography
-          sx={{
-            color: "white",
-            fontWeight: "700",
-            fontSize: "3em",
-            fontFamily: "Source Sans Pro, Arial, sans-serif",
-          }}
-        >
-          Welcome.
-        </Typography>
-        <Typography
-          sx={{
-            color: "white",
-            fontWeight: "600",
-            fontSize: "2em",
-          }}
-        >
-          Millions of movies, TV shows and people to discover. Explore now.
-        </Typography>
-        <Grid item>
-          <Autocomplete
-            disablePortal
-            id="combo-box-demo"
+    <Container>
+      <Grid
+        container
+        p={12}
+        item
+        sx={{
+          backgroundImage: `url(${Headerbackground})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center center",
+        }}
+      >
+        <Grid item sx={{ mx: "auto", my: "auto" }}>
+          <Typography
             sx={{
-              width: "90%",
-              backgroundColor: "white",
-              mt: 4,
-              borderRadius: "20px",
+              color: "white",
+              fontWeight: "700",
+              fontSize: "3em",
+              fontFamily: "Source Sans Pro, Arial, sans-serif",
             }}
-            options={data.results}
-            getOptionLabel={(movie) => movie.title}
-            onChange={(event, value) => setItem(value)}
-            renderInput={(params) => (
-              <TextField
-                {...params}
-                label="Movie"
-                onChange={(e) => setVal(e.target.value)}
-              />
-            )}
-          />
+          >
+            Welcome.
+          </Typography>
+          <Typography
+            sx={{
+              color: "white",
+              fontWeight: "600",
+              fontSize: "2em",
+            }}
+          >
+            Millions of movies, TV shows and people to discover. Explore now.
+          </Typography>
+          <Grid item>
+            <Autocomplete
+              disablePortal
+              id="combo-box-demo"
+              size="small"
+              disableClearable
+              options={data.results}
+              getOptionLabel={(movie) => movie.title}
+              onChange={(event, value) => setItem(value)}
+              renderInput={(params) => (
+                <TextField
+                  sx={{ backgroundColor: "white" }}
+                  {...params}
+                  label="Movie"
+                  onChange={(e) => setVal(e.target.value)}
+                />
+              )}
+            />
+          </Grid>
         </Grid>
       </Grid>
-    </Grid>
+    </Container>
   );
 };
