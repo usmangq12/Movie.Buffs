@@ -37,6 +37,7 @@ export const Deatail = () => {
           display: "flex",
           px: { xs: 4, sm: 10 },
           py: { xs: 2, sm: 6 },
+          width: "100%",
           position: "relative",
           zIndex: "1",
           backgroundImage: `url(${
@@ -46,45 +47,47 @@ export const Deatail = () => {
           backgroundSize: "cover",
         }}
       >
-        <Grid
-          container
-          sx={{
-            flexWrap: { xs: "wrap", sm: "nowrap" },
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <Grid item xs={12} sm={6} md={2}>
-            <CardMedia
-              component="img"
-              sx={{ height: "400px", borderRadius: "8px" }}
-              image={
-                "https://www.themoviedb.org/t/p/original" + data.backdrop_path
-              }
-              alt="nature"
-            />
-          </Grid>
+        <Container>
           <Grid
-            item
-            sx={{ display: "flex", flexDirection: "column" }}
-            xs={12}
-            sm={6}
-            md={10}
+            container
+            sx={{
+              flexWrap: { xs: "wrap", sm: "nowrap" },
+              justifyContent: "center",
+              alignItems: "center",
+            }}
           >
-            <CardContent>
-              <Typography component="div" variant="h5" color="white">
-                {data.title} ({data.release_date})
-              </Typography>
-              <Typography variant="subtitle1" color="#fff" component="div">
-                <h3>Overview</h3>
-              </Typography>
+            <Grid item xs={12} sm={6} md={3}>
+              <CardMedia
+                component="img"
+                sx={{ height: "400px", borderRadius: "8px" }}
+                image={
+                  "https://www.themoviedb.org/t/p/original" + data.backdrop_path
+                }
+                alt="nature"
+              />
+            </Grid>
+            <Grid
+              item
+              sx={{ display: "flex", flexDirection: "column", pl: 2 }}
+              xs={12}
+              sm={6}
+              md={9}
+            >
+              <CardContent>
+                <Typography component="div" variant="h5" color="white">
+                  {data.title} ({data.release_date})
+                </Typography>
+                <Typography variant="subtitle1" color="#fff" component="div">
+                  <h3>Overview</h3>
+                </Typography>
 
-              <Typography variant="subtitle1" color="white" component="div">
-                {data.overview}
-              </Typography>
-            </CardContent>
+                <Typography variant="subtitle1" color="white" component="div">
+                  {data.overview}
+                </Typography>
+              </CardContent>
+            </Grid>
           </Grid>
-        </Grid>
+        </Container>
         <Grid
           sx={{
             position: "absolute",
